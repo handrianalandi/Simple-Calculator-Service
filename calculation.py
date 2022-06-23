@@ -16,6 +16,7 @@ def palindrome(n):
 
 @app.task()
 def prime_index(n):
+    print("Prime function is called by celery worker..")
     counter=0
     number=2
     while counter!=int(n):
