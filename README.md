@@ -1,4 +1,5 @@
 # Simple-Calculator-Service<br>
+I used <b>simplecloud</b> database for the user login
 
 a simple calculator Service that able to :<br>
 search for n-th prime number<br>
