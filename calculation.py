@@ -33,7 +33,6 @@ def palindrome_prime_index(n):
     print("Asumption: 1 digit prime number is not considered as palindrome")
     counter=0
     number=10
-    time.sleep(5)
     while counter!=int(n):
         if is_prime(int(number)) and palindrome(int(number)):
             counter+=1

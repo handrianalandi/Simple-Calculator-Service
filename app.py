@@ -6,6 +6,10 @@ from datetime import timedelta
 from uuid import uuid4
 from calculation import prime_index,palindrome_prime_index
 app = Flask(__name__)
+
+#run celery with
+# celery -A calculation  worker -l info -P eventlet
+
 # session.clear()
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -91,9 +95,9 @@ def prime(n):
     if not session.get('logged_in'):
         return "You are not logged in"
     if request.method == 'GET':
+        prime_index.delay(n)
         #return jsonify result of prime_index function
-        
-        return jsonify({"result":prime_index(n)})
+        return "Prime Task has been called please see your celery terminal to see the result"
 
 # palindrome
 @app.route('/api/prime/palindrome/<n>', methods = ['GET'])
@@ -103,7 +107,7 @@ def palindromeprimeindex(n):
     if request.method == 'GET':
         palindrome_prime_index.delay(n)
         # return jsonify({"result": palindrome_prime_index(n)})
-        return "Palindrom Prime Task has been called"
+        return "Palindrom Prime Task has been called please see your celery terminal to see the result"
 
 if(__name__ == "__main__"):
     app.run(debug=True)
