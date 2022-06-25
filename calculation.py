@@ -1,3 +1,4 @@
+from unittest import result
 from celery import Celery
 import time
 
@@ -23,7 +24,10 @@ def prime_index(n):
         if is_prime(int(number)):
             counter+=1
         number+=1
-    return number-1
+    result={
+        "result":number-1
+    }
+    return result
 
 
 
@@ -38,4 +42,7 @@ def palindrome_prime_index(n):
         if is_prime(int(number)) and palindrome(int(number)):
             counter+=1
         number+=1
-    return number-1
+    result={
+        "result":number-1
+    }
+    return result
